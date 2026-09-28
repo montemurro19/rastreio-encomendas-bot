@@ -21,21 +21,11 @@ export class MelhorEnvioTrackingProvider implements TrackingProvider {
     const code = normalizeTrackingCode(trackingCode);
     this.logger.log(`Tracking package ${code} via Melhor Envio provider.`);
 
-    // Fallback/standard response for Melhor Envio
-    const events: TrackingEventResult[] = [
-      {
-        status: PackageStatus.POSTED,
-        description: 'Envio gerado na plataforma Melhor Envio',
-        location: 'São Paulo - SP',
-        eventDate: new Date(),
-      },
-    ];
-
     return {
       trackingCode: code,
       status: PackageStatus.POSTED,
       carrier: this.name,
-      events,
+      events: [],
     };
   }
 }

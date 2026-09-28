@@ -30,19 +30,19 @@ export class MockTrackingProvider implements TrackingProvider {
           status: PackageStatus.DELIVERED,
           description: 'Objeto entregue ao destinatário',
           location: 'São Paulo - SP',
-          eventDate: new Date(),
+          eventDate: new Date('2026-09-28T16:42:00Z'),
         },
         {
           status: PackageStatus.OUT_FOR_DELIVERY,
           description: 'Objeto saiu para entrega ao destinatário',
           location: 'CDD São Paulo - SP',
-          eventDate: new Date(Date.now() - 3600 * 1000 * 3),
+          eventDate: new Date('2026-09-28T13:00:00Z'),
         },
         {
           status: PackageStatus.POSTED,
           description: 'Objeto postado',
           location: 'Agência Central - São Paulo - SP',
-          eventDate: new Date(Date.now() - 3600 * 1000 * 24),
+          eventDate: new Date('2026-09-27T10:00:00Z'),
         },
       ];
 
@@ -60,13 +60,13 @@ export class MockTrackingProvider implements TrackingProvider {
         status: PackageStatus.IN_TRANSIT,
         description: 'Objeto em trânsito - por favor aguarde',
         location: 'Unidade de Tratamento - São Paulo/SP',
-        eventDate: new Date(Date.now() - 3600 * 1000 * 2),
+        eventDate: new Date('2026-09-28T13:21:00Z'),
       },
       {
         status: PackageStatus.POSTED,
         description: 'Objeto postado após o horário limite da agência',
         location: 'Agência dos Correios - São Paulo/SP',
-        eventDate: new Date(Date.now() - 3600 * 1000 * 24),
+        eventDate: new Date('2026-09-27T18:00:00Z'),
       },
     ];
 

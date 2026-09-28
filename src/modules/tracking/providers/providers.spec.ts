@@ -65,4 +65,18 @@ describe('Tracking Providers and Registry', () => {
       expect(result.events[0].status).toBe(PackageStatus.DELIVERED);
     });
   });
+
+  describe('CorreiosTrackingProvider tracking', () => {
+    it('should return empty events array when object is not yet found (404)', async () => {
+      const axios = require('axios');
+      jest.spyOn(axios, 'get').mockRejectedValueOnce({
+        response: { status: 404, data: { message: 'Não encontrado' } },
+      });
+
+      const result = await correiosProvider.track('AA123456789BR');
+      expect(result.trackingCode).toBe('AA123456789BR');
+      expect(result.status).toBe(PackageStatus.UNKNOWN);
+      expect(result.events).toEqual([]); // Must be empty to prevent false notifications!
+    });
+  });
 });

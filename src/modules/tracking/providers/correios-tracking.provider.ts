@@ -53,13 +53,13 @@ export class CorreiosTrackingProvider implements TrackingProvider {
           location = [u.cidade, u.uf].filter(Boolean).join(' - ');
         }
 
-        const date = evt.data ? new Date(evt.data) : new Date();
+        const date = evt.data ? new Date(evt.data) : new Date(0);
 
         return {
           status,
           description: desc,
           location: location || undefined,
-          eventDate: isNaN(date.getTime()) ? new Date() : date,
+          eventDate: isNaN(date.getTime()) ? new Date(0) : date,
           rawData: evt,
         };
       });
@@ -83,13 +83,7 @@ export class CorreiosTrackingProvider implements TrackingProvider {
           trackingCode: code,
           status: PackageStatus.UNKNOWN,
           carrier: this.name,
-          events: [
-            {
-              status: PackageStatus.UNKNOWN,
-              description: 'Objeto ainda não consta na base dos Correios',
-              eventDate: new Date(),
-            },
-          ],
+          events: [],
         };
       }
 
